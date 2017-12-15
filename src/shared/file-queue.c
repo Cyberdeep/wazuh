@@ -152,7 +152,7 @@ alert_data *Read_FileMon(file_queue *fileq, const struct tm *p, unsigned int tim
     alert_data *al_data;
 
     /* If the file queue is not available, try to access it */
-    if (!fileq->fp) {
+    if (fileq->fp != NULL && !fileq->fp) {
         if (Handle_Queue(fileq, 0) != 1) {
             file_sleep();
             return (NULL);
