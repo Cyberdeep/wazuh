@@ -68,10 +68,14 @@ int receive_msg()
 
                 default:
                     // length > OS_MAXSTR
-                    merror("Too big message size from manager.");
+                    if (length == 0){
+                    	merror("Empty message from manager");
+                    	return 0;
+                    }else if (length > OS_MAXSTR){
+                    	merror("Too big message size from manager.");
+                    	return 0;
+                    }
                 }
-
-                break;
             }
 
             recv_b = recv(agt->sock, buffer, length, MSG_WAITALL);
