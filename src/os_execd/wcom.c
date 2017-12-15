@@ -637,7 +637,6 @@ int _unsign(const char * source, char dest[PATH_MAX + 1]) {
 
 #ifndef WIN32
     int fd;
-    umask(0022);
     if (fd = mkstemp(dest), fd >= 0) {
         close(fd);
 
